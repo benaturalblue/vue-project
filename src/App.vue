@@ -1,19 +1,17 @@
 <template>
-  <div class="container">
-    <h1>🕒 ポモドーロタイマー</h1>
-    <TimerDisplay :status="status" :time="formattedTime" />
-    <TimerControls
-      @start="startTimer"
-      @pause="pauseTimer"
-      @reset="resetTimer"
-    />
+  <div class="p-4 max-w-md mx-auto bg-white rounded shadow">
+    <h1 class="text-2xl font-bold mb-4 text-center text-blue-600">🕒 ポモドーロタイマー</h1>
+    <p class="text-center text-gray-700 mb-6">{{ status }} - {{ formattedTime }}</p>
+    <div class="flex justify-center space-x-4">
+      <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" @click="startTimer">スタート</button>
+      <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded" @click="pauseTimer">一時停止</button>
+      <button class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded" @click="resetTimer">リセット</button>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
-import TimerDisplay from './components/TimerDisplay.vue'
-import TimerControls from './components/TimerControls.vue'
 
 const workDuration = 25 * 60
 const breakDuration = 5 * 60
@@ -64,14 +62,8 @@ function switchMode() {
 }
 </script>
 
-<style scoped>
-.container {
-  text-align: center;
-  padding: 2rem;
-  font-family: sans-serif;
-}
-button {
-  margin: 0.5rem;
-  padding: 0.5rem 1rem;
-}
+<!-- style scoped は外してOK -->
+<style>
+/* Tailwindを使うならここは空か競合しないCSSだけに */
 </style>
+
